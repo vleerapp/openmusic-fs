@@ -7,10 +7,6 @@ import (
 	"github.com/vleerapp/openmusic-fs/internal/api"
 )
 
-func router(g *gin.RouterGroup) {
-	g.GET("/ping", ping)
-}
-
 func ping(c *gin.Context) {
 	v, _ := c.Get("auth")
 	auth, _ := v.(bool)
@@ -19,5 +15,7 @@ func ping(c *gin.Context) {
 }
 
 func init() {
-	api.Register(router)
+	api.Register(func(g *gin.RouterGroup) {
+		g.GET("/ping", ping)
+	})
 }

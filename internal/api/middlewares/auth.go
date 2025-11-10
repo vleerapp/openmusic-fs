@@ -9,7 +9,7 @@ import (
 
 func AuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		cfg := helpers.Get(c)
+		cfg := helpers.GetConfig(c)
 
 		if cfg.Server.Secret == nil {
 			c.Next()

@@ -1,23 +1,19 @@
 [branding]
-name = "OpenMusic"
-short = "OMUS"
+name = "Vleer (Official)"
+email = "contact@vleer.app"
+short = "VLEER"
 logo = "https://openmusic.vleer.app/logo.png"
 theme = "#ff6600"
 
 [branding.links]
 homepage = "https://openmusic.vleer.app"
 privacy_statement = "https://openmusic.vleer.app/privacy"
-donate = "https://openmusic.vleer.app/donate"
 
 [details]
 version = "1.2.3"
 
 [details.capabilities]
 artists = true
-
-[contact]
-name = "Vleer"
-email = "contact@vleer.app"
 
 [server]
 secret = "123"

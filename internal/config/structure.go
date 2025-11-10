@@ -1,17 +1,18 @@
 package config
 
 type Links struct {
-	Homepage         string `validate:"required,url"`
-	PrivacyStatement string `toml:"privacy_statement" validate:"url"`
-	Donate           string `validate:"url"`
+	Homepage         string  `validate:"required,url"`
+	PrivacyStatement *string `toml:"privacy_statement" validate:"omitempty,url"`
+	Donate           *string `validate:"omitempty,url"`
 }
 
 type Branding struct {
-	Name  string `validate:"required"`
-	Short string `validate:"required,min=3,max=5,uppercase"`
-	Logo  string `validate:"url"`
-	Theme string `validate:"hexcolor"`
-	Links Links  `validate:"required"`
+	Name  string  `validate:"required"`
+	Email string  `validate:"required,email"`
+	Short string  `validate:"required,min=3,max=5,uppercase"`
+	Logo  *string `validate:"omitempty,url"`
+	Theme *string `validate:"omitempty,hexcolor"`
+	Links Links   `validate:"required"`
 }
 
 type Capabilities struct {
@@ -43,11 +44,6 @@ type Details struct {
 	Capabilities Capabilities
 }
 
-type Contact struct {
-	Name  string
-	Email string
-}
-
 type Server struct {
 	Port   string `default:"8080"`
 	Secret *string
@@ -56,6 +52,5 @@ type Server struct {
 type Config struct {
 	Branding Branding `validate:"required"`
 	Details  Details  `validate:"required"`
-	Contact  Contact
 	Server   Server
 }
