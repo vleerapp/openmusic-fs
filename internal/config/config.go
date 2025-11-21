@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/creasty/defaults"
@@ -11,7 +12,7 @@ import (
 
 var validate = validator.New()
 
-func Load() (*Config, error) {
+func LoadErr() (*Config, error) {
 	path := "om.conf.toml"
 
 	if _, err := os.Stat(path); os.IsNotExist(err) {
@@ -38,4 +39,12 @@ func Load() (*Config, error) {
 	}
 
 	return &cfg, nil
+}
+
+func Load() *Config {
+	cfg, err := LoadErr()
+	if err != nil {
+		log.Fatal(err)
+	}
+	return cfg
 }

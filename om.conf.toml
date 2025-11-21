@@ -17,3 +17,4 @@ artists = true
 
 [server]
 secret = "123"
+music_path = "./music"

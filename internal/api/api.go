@@ -16,16 +16,8 @@ func Register(r RouteFunc) {
 	routeList = append(routeList, r)
 }
 
-func mustLoadConfig() *config.Config {
-	cfg, err := config.Load()
-	if err != nil {
-		log.Fatal(err)
-	}
-	return cfg
-}
-
 func Start() {
-	cfg := mustLoadConfig()
+	cfg := config.Load()
 
 	r := gin.Default()
 	r.Use(gin.Recovery())

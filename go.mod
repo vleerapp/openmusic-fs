@@ -2,7 +2,10 @@ module github.com/vleerapp/openmusic-fs
 
 go 1.25.1
 
-require github.com/go-playground/validator/v10 v10.28.0
+require (
+	github.com/dhowden/tag v0.0.0-20240417053706-3d75831295e8
+	github.com/go-playground/validator/v10 v10.28.0
+)
 
 require (
 	github.com/bytedance/sonic v1.14.0 // indirect
