@@ -31,6 +31,18 @@ func ListSongs() []Item {
 	return out
 }
 
+func GetPathByID(id string) (string, bool) {
+	itemsMu.RLock()
+	defer itemsMu.RUnlock()
+
+	for _, it := range Items {
+		if it.Song.ID == id {
+			return it.path, true
+		}
+	}
+	return "", false
+}
+
 func GetCoverByID(id string) ([]byte, string, bool, error) {
 	itemsMu.RLock()
 	defer itemsMu.RUnlock()
