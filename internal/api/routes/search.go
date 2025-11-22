@@ -8,14 +8,14 @@ import (
 	"github.com/vleerapp/openmusic-fs/internal/musicfs"
 )
 
-func list(c *gin.Context) {
-	songs := musicfs.ListSongs()
+func search(c *gin.Context) {
+	songs := musicfs.SearchSongs(c.Query("query"))
 
 	c.JSON(http.StatusOK, songs)
 }
 
 func init() {
 	api.Register(func(g *gin.RouterGroup) {
-		g.GET("/songs", list)
+		g.GET("/songs/search", search)
 	})
 }
