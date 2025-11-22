@@ -4,7 +4,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"path/filepath"
 
 	"github.com/gin-gonic/gin"
 	"github.com/vleerapp/openmusic-fs/internal/api"
@@ -35,18 +34,6 @@ func stream(c *gin.Context) {
 		return
 	}
 
-	ext := filepath.Ext(path)
-	mimeType := "audio/mpeg"
-	switch ext {
-	case ".flac":
-		mimeType = "audio/flac"
-	case ".ogg", ".oga":
-		mimeType = "audio/ogg"
-	case ".wav":
-		mimeType = "audio/wav"
-	}
-
-	c.Header("Content-Type", mimeType)
 	http.ServeContent(c.Writer, c.Request, fi.Name(), fi.ModTime(), f)
 }
 
