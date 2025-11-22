@@ -103,14 +103,6 @@ func indexFile(path string) {
 	if title == "" {
 		title = FallbackTitleFromPath(path)
 	}
-	artist := info.Artist()
-	if artist == "" {
-		artist = "Unknown Artist"
-	}
-	album := info.Album()
-	if album == "" {
-		album = "Unknown Album"
-	}
 
 	var coverURL string
 	if info.Picture() != nil {
@@ -121,8 +113,8 @@ func indexFile(path string) {
 		Song: openmusic.Song{
 			ID:          id,
 			Title:       title,
-			ArtistName:  artist,
-			AlbumName:   album,
+			ArtistName:  info.Artist(),
+			AlbumName:   info.Album(),
 			Genre:       info.Genre(),
 			ReleaseYear: info.Year(),
 			Track:       track,
