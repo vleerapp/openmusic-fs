@@ -1,18 +1,18 @@
 package openmusic
 
 type Song struct {
-	ID          string
-	Title       string
-	ArtistName  string // Optional
-	AlbumName   string // Optional
-	Genre       string // Optional
-	ReleaseYear int    // Optional
-	Track       int    // Optional
-	TrackTotal  int    // Optional
-	Disc        int    // Optional
-	DiscTotal   int    // Optional
-	CoverURL    string // Optional
-	Lyrics      string // Optional
+	ID          string `json:"id"`
+	Title       string `json:"title"`
+	ArtistName  string `json:"artistName,omitempty"`
+	AlbumName   string `json:"albumName,omitempty"`
+	Genre       string `json:"genre,omitempty"`
+	ReleaseYear int    `json:"releaseYear,omitempty"`
+	Track       int    `json:"track,omitempty"`
+	TrackTotal  int    `json:"trackTotal,omitempty"`
+	Disc        int    `json:"disc,omitempty"`
+	DiscTotal   int    `json:"discTotal,omitempty"`
+	CoverURL    string `json:"coverURL,omitempty"`
+	Lyrics      string `json:"lyrics,omitempty"`
 }
 
 type Album struct {

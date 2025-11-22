@@ -34,9 +34,9 @@ func info(c *gin.Context) {
 	cfg := helpers.GetConfig(c)
 
 	links := gin.H{
-		"homepage":          cfg.Branding.Links.Homepage,
-		"privacy_statement": cfg.Branding.Links.PrivacyStatement,
-		"donate":            cfg.Branding.Links.Donate,
+		"homepage":         cfg.Branding.Links.Homepage,
+		"privacyStatement": cfg.Branding.Links.PrivacyStatement,
+		"donate":           cfg.Branding.Links.Donate,
 	}
 
 	branding := gin.H{

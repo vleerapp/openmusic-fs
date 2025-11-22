@@ -22,7 +22,7 @@ var (
 	itemsMu sync.RWMutex
 )
 
-func GetSongs() []Item {
+func ListSongs() []Item {
 	itemsMu.RLock()
 	defer itemsMu.RUnlock()
 
