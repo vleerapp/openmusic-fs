@@ -35,6 +35,7 @@ require (
 require (
 	github.com/creasty/defaults v1.8.0
 	github.com/fatih/structs v1.1.0
+	github.com/fsnotify/fsnotify v1.9.0
 	github.com/gabriel-vasile/mimetype v1.4.10 // indirect
 	github.com/gin-gonic/gin v1.11.0
 	github.com/go-playground/locales v0.14.1 // indirect

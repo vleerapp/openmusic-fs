@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func WalkFiles(root string) ([]string, error) {
@@ -52,4 +53,16 @@ func IsAudio(path string) bool {
 	default:
 		return false
 	}
+}
+
+func FallbackTitleFromPath(path string) string {
+	base := filepath.Base(path)
+	ext := filepath.Ext(base)
+	name := strings.TrimSuffix(base, ext)
+
+	name = strings.ReplaceAll(name, "_", " ")
+	name = strings.ReplaceAll(name, "-", " ")
+	name = strings.TrimSpace(name)
+
+	return name
 }

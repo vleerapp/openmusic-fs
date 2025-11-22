@@ -1,20 +1,18 @@
 package openmusic
 
-import "github.com/dhowden/tag"
-
 type Song struct {
 	ID          string
 	Title       string
-	ArtistName  string       // Optional
-	AlbumName   string       // Optional
-	Genre       string       // Optional
-	ReleaseYear int          // Optional
-	Track       int          // Optional
-	TrackTotal  int          // Optional
-	Disc        int          // Optional
-	DiscTotal   int          // Optional
-	CoverURL    *tag.Picture // Optional
-	Lyrics      string       // Optional
+	ArtistName  string // Optional
+	AlbumName   string // Optional
+	Genre       string // Optional
+	ReleaseYear int    // Optional
+	Track       int    // Optional
+	TrackTotal  int    // Optional
+	Disc        int    // Optional
+	DiscTotal   int    // Optional
+	CoverURL    string // Optional
+	Lyrics      string // Optional
 }
 
 type Album struct {

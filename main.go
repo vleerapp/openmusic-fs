@@ -1,7 +1,7 @@
 package main
 
 import (
-	"os"
+	"log"
 
 	"github.com/vleerapp/openmusic-fs/internal/api"
 	_ "github.com/vleerapp/openmusic-fs/internal/api/routes"
@@ -10,6 +10,12 @@ import (
 
 func main() {
 	musicfs.Scan()
-	os.Exit(0)
+
+	watcher, err := musicfs.StartWatcher()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer watcher.Close()
+
 	api.Start()
 }
