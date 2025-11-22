@@ -31,10 +31,17 @@ func FileSHA256(path string) (string, error) {
 	defer f.Close()
 
 	h := sha256.New()
+
 	if _, err := io.Copy(h, f); err != nil {
 		return "", err
 	}
-	return hex.EncodeToString(h.Sum(nil)), nil
+
+	if _, err := h.Write([]byte(path)); err != nil {
+		return "", err
+	}
+
+	sum := h.Sum(nil)
+	return hex.EncodeToString(sum)[:16], nil
 }
 
 func FileInfo(path string) (os.FileInfo, error) {

@@ -11,6 +11,10 @@ import (
 func search(c *gin.Context) {
 	songs := musicfs.SearchSongs(c.Query("query"))
 
+	if songs == nil {
+		songs = []musicfs.Item{}
+	}
+
 	c.JSON(http.StatusOK, songs)
 }
 
