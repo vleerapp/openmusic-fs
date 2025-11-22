@@ -12,7 +12,7 @@ import (
 func song(c *gin.Context) {
 	song, ok := musicfs.GetSongByID(c.Param("id"))
 
-	if !ok {
+	if !ok || song == nil {
 		c.JSON(http.StatusNotFound, helpers.CreateError("Song not found", nil))
 	}
 

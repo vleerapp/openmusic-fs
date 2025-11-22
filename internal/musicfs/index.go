@@ -31,6 +31,35 @@ func ListSongs() []Item {
 	return out
 }
 
+func GetCoverByID(id string) ([]byte, string, bool, error) {
+	itemsMu.RLock()
+	defer itemsMu.RUnlock()
+
+	for _, it := range Items {
+		if it.Song.ID == id {
+			f, err := os.Open(it.path)
+			if err != nil {
+				return nil, "", false, err
+			}
+			defer f.Close()
+
+			info, err := tag.ReadFrom(f)
+			if err != nil {
+				return nil, "", false, err
+			}
+
+			pic := info.Picture()
+			if pic == nil {
+				return nil, "", false, nil
+			}
+
+			return pic.Data, pic.MIMEType, true, nil
+		}
+	}
+
+	return nil, "", false, nil
+}
+
 func GetSongByID(id string) (*openmusic.Song, bool) {
 	itemsMu.RLock()
 	defer itemsMu.RUnlock()
@@ -106,7 +135,7 @@ func indexFile(path string) {
 
 	var coverURL string
 	if info.Picture() != nil {
-		coverURL = "/art/" + id
+		coverURL = "/song/" + id + "/art"
 	}
 
 	item := Item{
