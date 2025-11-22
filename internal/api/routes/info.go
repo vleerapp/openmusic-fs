@@ -2,7 +2,7 @@ package routes
 
 import (
 	"net/http"
-	"strings"
+	"unicode"
 
 	"github.com/fatih/structs"
 	"github.com/gin-gonic/gin"
@@ -10,12 +10,24 @@ import (
 	"github.com/vleerapp/openmusic-fs/internal/api/helpers"
 )
 
-func toCamel(s string) string {
+func toSnake(s string) string {
 	if s == "" {
 		return s
 	}
 
-	return strings.ToLower(s[:1]) + s[1:]
+	var out []rune
+	for i, r := range s {
+		if unicode.IsUpper(r) {
+			if i > 0 {
+				out = append(out, '_')
+			}
+			out = append(out, unicode.ToLower(r))
+		} else {
+			out = append(out, r)
+		}
+	}
+
+	return string(out)
 }
 
 func info(c *gin.Context) {
@@ -38,7 +50,7 @@ func info(c *gin.Context) {
 
 	caps := gin.H{}
 	for k, v := range structs.Map(cfg.Details.Capabilities) {
-		caps[toCamel(k)] = v
+		caps[toSnake(k)] = v
 	}
 
 	details := gin.H{
