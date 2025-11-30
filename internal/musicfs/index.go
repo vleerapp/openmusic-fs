@@ -2,6 +2,7 @@ package musicfs
 
 import (
 	"log"
+	"math/rand"
 	"os"
 	"strings"
 	"sync"
@@ -84,6 +85,19 @@ func GetSongByID(id string) (*openmusic.Song, bool) {
 	}
 
 	return nil, false
+}
+
+func GetRandomSong() (*openmusic.Song, bool) {
+	itemsMu.RLock()
+	defer itemsMu.RUnlock()
+
+	if len(Items) == 0 {
+		return nil, false
+	}
+
+	randomIndex := rand.Intn(len(Items))
+	randomItem := Items[randomIndex].Song
+	return &randomItem, true
 }
 
 func SearchSongs(query string) []Item {
