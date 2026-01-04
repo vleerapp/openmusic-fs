@@ -2,12 +2,12 @@
 name = "Vleer (Official)"
 email = "contact@vleer.app"
 short = "VLEER"
-logo = "https://openmusic.vleer.app/logo.png"
+logo = "https://docs.vleer.app/openmusic.svg"
 theme = "#ff6600"
 
 [branding.links]
-homepage = "https://openmusic.vleer.app"
-privacy_statement = "https://openmusic.vleer.app/privacy"
+homepage = "https://docs.vleer.app/openmusic"
+privacy_statement = "https://docs.vleer.app/privacy"
 
 [details]
 version = "1.2.3"
